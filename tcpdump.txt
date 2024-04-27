@@ -1,0 +1,58 @@
+1-How to install:
+$sudo apt install tcpdump
+
+2- which tcpdump
+
+3-Capture packets:
+$sudo tcpdump -D
+
+4-Get packets from active interface:
+$sudo tcpdump --interface any
+
+5-Limit the number of packets to be captured using '-c' flag that signifies the 'count'
+So to capture 3 packets use c3
+$sudo tcpdump -i any -c3
+
+6-tcpdump captures packets with IP and port names by default but to clean-up the mess and make the output easier to understand; the names can be disabled
+using '-n' and '-nn'
+$sudo tcpdump -i any -c3 -nn
+
+7- same as above
+$sudo tcpdump -i any -c3 -n
+
+8-Capture a packet using hostname
+$sudo tcpdump -i any -c3 host 10.0.2.15
+
+9-Variations to get one way traffic
+$sudo tcpdump -i any -c3 src 10.0.2.15
+$sudo tcpdump -i any -c3 dst 10.0.2.15
+
+10- Capture a packet using port number
+$sudo tcpdump -i any -c3 -nn port 443
+
+11- Capture a packet using protocol
+$sudo tcpdump -i any -c3 udp
+
+12- Combine filtering options using logical operators
+$sudo tcpdump -i any -c3 host 10.0.2.15 and port 443
+
+13- store captured data (w=write)
+$sudo tcpdump -i any -c3 -w packetData.pcap
+
+14- To read rge above file 
+$tcpdump -r  packetData.pcap
+
+
+
+TCL INSTALLATION
+$sudo apt-get install ns2
+ns
+% (To check if installed)
+
+$sudo apt-get purge nam
+$sudo apt install nam
+nam
+
+
+
+
