@@ -1,0 +1,32 @@
+set ns [new Simulator]
+
+set nf [open soham.nam w]
+$ns namtrace-all $nf
+
+set np [open soham.tr w]
+$ns trace-all $np
+
+proc finish {} {
+    global ns nf np
+    $ns flush-trace
+    close $nf
+    close $np
+    exec nam soham.nam &
+    exit 0
+}
+
+for {set i 0} {$i<6} {incr i 1} {
+    set n($i) [$ns node]
+}
+set n6 [$ns node]
+for {set i 7} {$i<12} {incr i 1} {
+    set n($i) [$ns node]
+}
+for {set i 0} {$i<6} {incr i} {
+    $ns duplex-link $n($i) $n6 10Mb 10ms DropTail
+}
+for {set i 7} {$i<12} {incr i} {
+    $ns duplex-link $n($i) $n6 10Mb 10ms DropTail
+}
+$ns at 1.0 "finish"
+$ns run
